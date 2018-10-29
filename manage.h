@@ -50,3 +50,5 @@ void stu_edit();
 void stu_list();
 
 int compare(char*, char*);
+
+void sort();

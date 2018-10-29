@@ -97,10 +97,12 @@ void stu_edit()
 
 }
 
-void stu_list()
+void stu_list()//1.列出学生姓名 2.跳转页面 3.查询学生并跳转到相应页面
 {
 	system("cls");
 	struct student temp;
+	struct student *p;
+	p = &temp;
 	int page=1,count;
 	printf_s("****************\n");
 	printf_s("*              *\n");
@@ -110,10 +112,27 @@ void stu_list()
 	extern FILE *stream;
 	fopen_s(&stream, "stu_info.txt", "a+");
 	fseek(stream, 0, SEEK_SET);
-	for (count = 0;count<=7;count++ )
+	for (;;) 
 	{
-
+		printf_s("Page %d\n", page);
+		for (count = 0; count <= 7; count++)
+		{
+			fread(p, sizeof(student), 1, stream);
+			printf_s("%d %-25s%-25s||\n", temp.name, temp.phone_number);
+		}
+		if (page == 1)
+		{
+			printf_s("n:下一页 g:跳转");
+		}
 	}
 	fread(&temp, sizeof(student), 1,stream );
 	printf_s("%s", temp.name, 20);
+}
+
+void sort()
+{
+	extern FILE *stream;
+	fopen_s(&stream, "stu_info.txt", "a+");
+	fseek(stream, 0, SEEK_SET);
+
 }
