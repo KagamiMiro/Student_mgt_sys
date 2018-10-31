@@ -1,6 +1,10 @@
 #pragma once
 #define MALE 1
 #define FEMALE 0
+
+FILE *stream;
+FILE *temp;
+
 struct date_of_birth
 {
 	int year;
@@ -19,10 +23,10 @@ struct student
 	char e_mail[40];
 };
 
-struct hash
+struct tree
 {
-	struct hash *left;
-	struct hash *right;
+	struct tree *left;
+	struct tree *right;
 	char name[20];
 	struct link *p;
 	int if_linked = 0;
@@ -52,3 +56,7 @@ void stu_list();
 int compare(char*, char*);
 
 void sort();
+
+struct tree *talloc();
+
+struct tree *addtree(struct tree *, char );

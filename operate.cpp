@@ -6,6 +6,16 @@
 #include "conio.h"
 #include "manage.h"
 
+struct tree *talloc()
+{
+	return (struct tree *) malloc(sizeof(struct tree));
+}
+
+struct tree *addtree(struct tree *p, char *)
+{
+
+}
+
 void clear()
 {
 	system("cls");
@@ -132,7 +142,20 @@ void stu_list()//1.列出学生姓名 2.跳转页面 3.查询学生并跳转到相应页面
 void sort()
 {
 	extern FILE *stream;
+	extern FILE *temp;
 	fopen_s(&stream, "stu_info.txt", "a+");
+	fopen_s(&temp, "stu_info_temp.txt", "a+");
+	fseek(temp, 0, SEEK_SET);
 	fseek(stream, 0, SEEK_SET);
-
+	
+	/*
+	struct tree
+{
+	struct tree *left;
+	struct tree *right;
+	char name[20];
+	struct link *p;
+	int if_linked = 0;
+};
+	*/
 }
