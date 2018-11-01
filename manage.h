@@ -27,7 +27,7 @@ struct tree
 {
 	struct tree *left;
 	struct tree *right;
-	char name[20];
+	char *name;
 	struct link *p;
 	int if_linked = 0;
 };
@@ -59,4 +59,6 @@ void sort();
 
 struct tree *talloc();
 
-struct tree *addtree(struct tree *, char );
+char *walloc();
+
+struct tree *addtree(struct tree *, char *);

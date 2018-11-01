@@ -159,3 +159,22 @@ void sort()
 };
 	*/
 }
+
+struct tree *addtree(struct tree *p, char *name)
+{
+	if (p == NULL)
+	{
+		p = talloc();
+		p.name = 
+	}
+}
+
+struct tree *talloc()
+{
+	return (struct tree *) malloc(sizeof(struct tree));
+}
+
+char *walloc()
+{
+	return (char *)malloc(20);
+}
