@@ -78,7 +78,7 @@ void stu_add()
 	struct student *temp_p;
 	temp_p = &temp;
 	printf_s("请输入学生姓名：");
-	scanf_s("%s",temp.name,20);
+	scanf_s("%s",temp.name,NAME_LENGTH);
 	printf_s("请输入学生年龄：");
 	scanf_s("%d",&temp.old);
 	printf_s("请输入学生性别(1.MALE , 2.FEMALE)：");
@@ -136,7 +136,7 @@ void stu_list()//1.列出学生姓名 2.跳转页面 3.查询学生并跳转到相应页面
 		}
 	}
 	fread(&temp, sizeof(student), 1,stream );
-	printf_s("%s", temp.name, 20);
+	printf_s("%s", temp.name, NAME_LENGTH);
 }
 
 void sort()
@@ -153,20 +153,23 @@ void sort()
 {
 	struct tree *left;
 	struct tree *right;
-	char name[20];
-	struct link *p;
+	char *name[20];
+	struct link *link;
 	int if_linked = 0;
 };
 	*/
 }
 
-struct tree *addtree(struct tree *p, char *name)
+struct tree *addtree(struct tree *p, char *na)
 {
 	if (p == NULL)
 	{
 		p = talloc();
-		p.name = 
+		p->name = walloc(na);
+		p->left = p->right =NULL;
+		p->link = NULL;
 	}
+	else if ()
 }
 
 struct tree *talloc()
@@ -174,7 +177,10 @@ struct tree *talloc()
 	return (struct tree *) malloc(sizeof(struct tree));
 }
 
-char *walloc()
+char *walloc(char *a)
 {
-	return (char *)malloc(20);
+	char *b;
+	b = (char *)malloc(NAME_LENGTH);
+	memcpy_s(b, NAME_LENGTH, a, NAME_LENGTH);
+	return b;
 }
