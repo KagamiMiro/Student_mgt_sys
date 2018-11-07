@@ -21,6 +21,7 @@ struct tree *addtree(struct tree *p, char *na)
 		p->stu->name = walloc(na);
 		p->left = p->right = NULL;
 		p->link = NULL;
+		return p;
 	}
 	else if (p != NULL)
 	{
@@ -28,19 +29,22 @@ struct tree *addtree(struct tree *p, char *na)
 		{
 			p->left = talloc();
 			p->left->stu->name = na;
+			return p;
 		}
 		else if (strcmp(na, p->stu->name) > 0)
 		{
 			p->right = talloc();
-			p->right->stu->name = na;
+			p->right->stu->name = walloc(na);
+			return p;
 		}
 		else
 		{
+				
 			p->if_linked = 1;
-
+			p->link->stu->name = walloc(na);
 		}
 	}
-	return 0;
+	
 }
 
 void clear()
@@ -153,7 +157,7 @@ void stu_list()//1.列出学生姓名 2.跳转页面 3.查询学生并跳转到相应页面
 		for (count = 0; count <= 7; count++)
 		{
 			fread(p, sizeof(student), 1, stream);
-			printf_s("%d %-25s%-25s||\n", temp.name, temp.phone_number);
+			printf_s("%d %-25s%-25s||\n", count, temp.name, temp.phone_number);
 		}
 		if (page == 1)
 		{
