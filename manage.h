@@ -3,9 +3,6 @@
 #define FEMALE 0
 #define NAME_LENGTH 20
 
-FILE *stream;
-FILE *temp;
-
 struct date_of_birth
 {
 	int year;
@@ -15,7 +12,18 @@ struct date_of_birth
 
 struct student
 {
-	char name[NAME_LENGTH];
+	char *name;
+	int gender;
+	int old;
+	char phone_number[13];
+	struct date_of_birth date;
+	char address[100];
+	char e_mail[40];
+};
+
+struct studentnp
+{
+	char name[20];
 	int gender;
 	int old;
 	char phone_number[13];
@@ -28,14 +36,14 @@ struct tree
 {
 	struct tree *left;
 	struct tree *right;
-	char *name;
+	struct student *stu;
 	struct link *link;
 	int if_linked = 0;
 };
 
 struct link
 {
-	char name[NAME_LENGTH];
+	struct student *stu;
 	struct link *p;
 	int if_linked = 0;
 };
@@ -60,7 +68,7 @@ void sort();
 
 struct tree *talloc();
 
-char *walloc();
+char *walloc(char *);
 
 struct tree *addtree(struct tree *, char *);
 

@@ -5,15 +5,42 @@
 #include "ctype.h"
 #include "conio.h"
 #include "manage.h"
+FILE *stream;
+FILE *temp;
 
 struct tree *talloc()
 {
 	return (struct tree *) malloc(sizeof(struct tree));
 }
 
-struct tree *addtree(struct tree *p, char *)
+struct tree *addtree(struct tree *p, char *na)
 {
+	if (p == NULL)
+	{
+		p = talloc();
+		p->stu->name = walloc(na);
+		p->left = p->right = NULL;
+		p->link = NULL;
+	}
+	else if (p != NULL)
+	{
+		if (strcmp(na, p->stu->name) < 0)
+		{
+			p->left = talloc();
+			p->left->stu->name = na;
+		}
+		else if (strcmp(na, p->stu->name) > 0)
+		{
+			p->right = talloc();
+			p->right->stu->name = na;
+		}
+		else
+		{
+			p->if_linked = 1;
 
+		}
+	}
+	return 0;
 }
 
 void clear()
@@ -74,9 +101,7 @@ void stu_add()
 	system("cls");
 	extern FILE *stream;
 	fopen_s(&stream, "stu_info.txt", "a+");
-	struct student temp;
-	struct student *temp_p;
-	temp_p = &temp;
+	struct studentnp temp;
 	printf_s("请输入学生姓名：");
 	scanf_s("%s",temp.name,NAME_LENGTH);
 	printf_s("请输入学生年龄：");
@@ -158,23 +183,6 @@ void sort()
 	int if_linked = 0;
 };
 	*/
-}
-
-struct tree *addtree(struct tree *p, char *na)
-{
-	if (p == NULL)
-	{
-		p = talloc();
-		p->name = walloc(na);
-		p->left = p->right =NULL;
-		p->link = NULL;
-	}
-	else if ()
-}
-
-struct tree *talloc()
-{
-	return (struct tree *) malloc(sizeof(struct tree));
 }
 
 char *walloc(char *a)
