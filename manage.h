@@ -39,7 +39,7 @@ struct tree
 	struct student *stu;
 	struct link *link;
 	int if_linked = 0;
-};
+}*root;
 
 struct link
 {

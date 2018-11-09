@@ -182,14 +182,23 @@ void stu_list()//1.列出学生姓名 2.跳转页面 3.查询学生并跳转到相应页面
 
 void sort()
 {
+	struct studentnp stu_temp;
 	extern FILE *stream;
 	extern FILE *temp;
+	int count=0;
+	char a;
 	fopen_s(&stream, "stu_info.txt", "a+");
 	fopen_s(&temp, "stu_info_temp.txt", "a+");
 	fseek(temp, 0, SEEK_SET);
 	fseek(stream, 0, SEEK_SET);
-	for (;;)
+	for(;;count++)
 	{
+		fread(&stu_temp, sizeof(student), 1, stream);
+		root = addtree(root, stu_temp.name);
+		if (feof(stream) == 0)
+		{
+
+		}
 	}
 	/*
 	struct tree
