@@ -72,3 +72,4 @@ char *walloc(char *);
 
 struct tree *addtree(struct tree *, char *);
 
+struct link *linkin(struct link *, char *);

@@ -27,24 +27,36 @@ struct tree *addtree(struct tree *p, char *na)
 	{
 		if (strcmp(na, p->stu->name) < 0)
 		{
-			p->left = talloc();
-			p->left->stu->name = na;
-			return p;
+			p->left = addtree(p->left, na);
 		}
 		else if (strcmp(na, p->stu->name) > 0)
 		{
-			p->right = talloc();
-			p->right->stu->name = walloc(na);
-			return p;
+			p->right = addtree(p->right, na);
+		}
+		else if (p->if_linked == 0)
+		{
+			p->link->stu->name = walloc(na);
 		}
 		else
 		{
-				
-			p->if_linked = 1;
-			p->link->stu->name = walloc(na);
+			p->link->p = linkin(p->link,na);
 		}
 	}
 	
+}
+
+struct link *linkin(struct link *link, char *na)
+{
+	if (link->if_linked == 0)
+	{
+		link->stu->name = walloc(na);
+		link->if_linked = 1;
+		return link;
+	}
+	else if (link->if_linked == 1)
+	{
+		linkin(link->p, na);
+	}
 }
 
 void clear()
@@ -176,13 +188,15 @@ void sort()
 	fopen_s(&temp, "stu_info_temp.txt", "a+");
 	fseek(temp, 0, SEEK_SET);
 	fseek(stream, 0, SEEK_SET);
-	
+	for (;;)
+	{
+	}
 	/*
 	struct tree
 {
 	struct tree *left;
 	struct tree *right;
-	char *name[20];
+	char *name;
 	struct link *link;
 	int if_linked = 0;
 };
