@@ -39,7 +39,7 @@ struct tree
 	struct student *stu;
 	struct link *link;
 	int if_linked = 0;
-}*root;
+};
 
 struct link
 {
@@ -73,3 +73,7 @@ char *walloc(char *);
 struct tree *addtree(struct tree *, char *);
 
 struct link *linkin(struct link *, char *);
+
+void treewrite(struct tree *);
+
+struct tree * treewrite_print(struct tree *);

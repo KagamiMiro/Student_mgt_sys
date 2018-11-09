@@ -7,6 +7,7 @@
 #include "manage.h"
 FILE *stream;
 FILE *temp;
+struct tree *root;
 
 struct tree *talloc()
 {
@@ -169,7 +170,7 @@ void stu_list()//1.列出学生姓名 2.跳转页面 3.查询学生并跳转到相应页面
 		for (count = 0; count <= 7; count++)
 		{
 			fread(p, sizeof(student), 1, stream);
-			printf_s("%d %-25s%-25s||\n", count, temp.name, temp.phone_number);
+			printf_s("%-5d %-25s%-25s||\n", count, temp.name, temp.phone_number);
 		}
 		if (page == 1)
 		{
@@ -197,9 +198,10 @@ void sort()
 		root = addtree(root, stu_temp.name);
 		if (feof(stream) == 0)
 		{
-
+			break;
 		}
 	}
+	treewrite(root);
 	/*
 	struct tree
 {
@@ -218,4 +220,20 @@ char *walloc(char *a)
 	b = (char *)malloc(NAME_LENGTH);
 	memcpy_s(b, NAME_LENGTH, a, NAME_LENGTH);
 	return b;
+}
+
+void treewrite(struct tree *root)
+{
+	fopen_s(&temp, "stu_info_temp.txt", "w");
+	treewrite_print(root);
+	fclose(temp);
+}
+
+struct tree *treewrite_print(struct tree *root)
+{
+	if (root->left != NULL)
+		treewrite_print(root->left);
+	fwrite(root->stu, sizeof(struct student), 1, temp);
+	if (root->right != NULL)
+		treewrite_print(root->right);
 }
